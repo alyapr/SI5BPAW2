@@ -17,7 +17,6 @@ const mongoose = require("mongoose");
 //Cross Origin Resource Sharing
 var app = express();
 
-
 app.use((req,res,next)=>{
   res.setHeader("Access-Control-Allow-Origin","*");
   res.setHeader(
