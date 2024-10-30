@@ -1,6 +1,5 @@
 const Buku = require("../model/buku");
 
-
 const createBuku= (req, res) => {
     const buku = new Buku({
         judul : req.body.judul,
@@ -23,6 +22,7 @@ const createBuku= (req, res) => {
                 //error : err
         });
     });
+   
 };
 
 const readBuku = (req, res)=>{
@@ -47,7 +47,7 @@ const deleteBuku= (req, res) => {
     .then((result)=>{
         res.status(200).json({
             message : "Buku berhasil dihapus ",
-            result : result
+            result : result 
         });
     })
     .catch((err)=>{
@@ -71,7 +71,7 @@ const updateBuku = (req, res) => {
     .then((hasil)=>{
         res.status(200).json({
             message : "Update Berhasil",
-            result : hasil   
+            result : hasil    
         });
     }).catch((err)=>{
         //console.log(err);
@@ -80,6 +80,8 @@ const updateBuku = (req, res) => {
                 //error : err
         });
     });;
+
 };
+
 
 module.exports ={createBuku, readBuku, deleteBuku, updateBuku}
