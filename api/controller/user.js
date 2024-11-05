@@ -39,6 +39,26 @@ const login = (req, res)=>{
         
         fetchedUser= user;
         return bcrypt.compare(req.body.password, user.password);
+    })
+    .then((result)=>{
+        if(!result){
+            return res.status(401).json({
+                message : "Auth failed, email not exists !"
+            });
+        }
+        //JWT
+        const token= jwt.sign(
+            {
+            email : fetchedUser.email, userid : fetchedUser._id}, 
+            "kuncisi5bpaw", 
+            {expireIn : "1h"}
+        );
+
+        res.status(200).json({token : token});
+    }).catch((err)=>{
+        res.status(401).json({
+            message : "Auth failed !"
+        });
     });
 }
 
