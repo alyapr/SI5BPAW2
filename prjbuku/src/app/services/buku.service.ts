@@ -7,7 +7,7 @@ import { response } from 'express';
   providedIn: 'root'
 })
 export class BukuService {
-  private url : string="https://localhost:3000/bukus"
+  private url : string="https://localhost:3000/buku"
 
   constructor(private http : HttpClient) { }
 
