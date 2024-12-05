@@ -8,22 +8,80 @@
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
                                     <div class="card-header"><h3 class="text-center font-weight-light my-4">Create Account</h3></div>
                                     <div class="card-body">
-                                        <form>
+                                        <form
+                                        [formGroup] = "registerForm"
+                                        (ngSubmit) = "onSubmit (registerForm)">
+
                                             <div class="form-floating mb-3">
-                                                <input class="form-control" id="inputEmail" type="email" placeholder="name@example.com" />
-                                                <label for="inputEmail">Email address</label>
+                                                <input class="form-control" id="inputpassword" type="password"
+                                                 placeholder="name@example.com"
+                                                 formControlName = "password"
+                                                 autocomplete="on"
+                                                 [ngClass]="
+                                                 registerForm.get('password') ?.invalid && submitted ? 'is-invalid' : ''
+                                                 "
+                                                  />
+                                                <label for="inputpassword">password address</label>
+                                                <div *ngIf="registerForm.get('password') ?.invalid && submitted ?">
+                                                    <small class="text-danger"
+                                                    *ngIf = "registerForm.get('password') ?.errors?.[required]">
+                                                        password harus diisi
+                                                    </small>
+                                                     <small class="text-danger"
+                                                    *ngIf = "registerForm.get('password') ?.errors?.['password']">
+                                                        password tidak valid
+                                                    </small>
+
+                                                </div>
+
                                             </div>
                                             <div class="row mb-3">
                                                 <div class="col-md-6">
                                                     <div class="form-floating mb-3 mb-md-0">
-                                                        <input class="form-control" id="inputPassword" type="password" placeholder="Create a password" />
+                                                        <input class="form-control" id="inputPassword" type="password" placeholder="Create a password" 
+                                                        placeholder="Create a password"
+                                                        formControlName ="password"
+                                                        autocomplete="on"
+                                                        [ngClass]="registerForm.get('password')?.invalid && submitted ? 'is-invalid' : '' 
+                                                        "
+                                                        />
                                                         <label for="inputPassword">Password</label>
                                                     </div>
+                                                    
+                                                    <div *ngIf="registerForm.get('password') ?.invalid && submitted ?">
+                                                        <small class="text-danger"
+                                                        *ngIf = "registerForm.get('password') ?.errors?.[required]">
+                                                            password harus diisi
+                                                        </small>
+                                                         <small class="text-danger"
+                                                        *ngIf = "registerForm.get('password') ?.errors?.['minlength']">
+                                                            password harus minimal 8 karakter
+                                                        </small>
+    
+                                                    </div>
                                                 </div>
+
                                                 <div class="col-md-6">
                                                     <div class="form-floating mb-3 mb-md-0">
-                                                        <input class="form-control" id="inputPasswordConfirm" type="password" placeholder="Confirm password" />
+                                                        <input class="form-control" id="inputPasswordConfirm" 
+                                                        type="password" placeholder="Confirm password" 
+                                                        formControlName ="confirmPassword"
+                                                        autocomplete="on"
+                                                        [ngClass]="registerForm.get('confirmPassword')?.invalid && submitted ? 'is-invalid' : ''
+                                                        "
+                                                        />
                                                         <label for="inputPasswordConfirm">Confirm Password</label>
+                                                    </div>
+                                                    <div *ngIf="registerForm.get('confirmPassword') ?.invalid && submitted ?">
+                                                        <small class="text-danger"
+                                                        *ngIf = "registerForm.get('confirmPassword') ?.errors?.[required]">
+                                                            password harus diisi
+                                                        </small>
+                                                         <small class="text-danger"
+                                                        *ngIf = "registerForm.get('confirmPassword') ?.errors?.['minlength']">
+                                                            password harus minimal 8 karakter
+                                                        </small>
+    
                                                     </div>
                                                 </div>
                                             </div>
